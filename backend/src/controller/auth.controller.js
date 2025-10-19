@@ -6,12 +6,12 @@ import jwt from "jsonwebtoken";
 
 export const createEmployee = async (req, res) => {
     try {
-        const { name, email, department, age, dateTime, imagePreview, password, role } = req.body;
+        const { fullname, email, password,  } = req.body;
 
 
 
 // /// Check if all required fields are provided
-    if (!name || !email || !password || !department || !age || !dateTime || !imagePreview ) {
+    if (!fullname || !email || !password  ) {
             return res.status(400).json({
                 message: "Please provide all required fields",
             });
@@ -25,14 +25,11 @@ export const createEmployee = async (req, res) => {
         }
 
         const newEmployee = await Employee.create({
-            name,
+            fullname,
             email,
-            department,
-            age,
-            dateTime,
-            imagePreview,
+        
             password,
-            role
+          
         });
 console.log(newEmployee)
 
@@ -41,11 +38,11 @@ console.log(newEmployee)
 
         res.status(201).json({
             success: true,
-            message: "Employee created successfully",
+            message: "User created successfully",
             data: newEmployee
         });
     } catch (error) {
-        console.error("Error creating employee:", error);
+        console.error("Error creating user:", error);
         res.status(500).json({
             success: false,
             message: "Internal server error"

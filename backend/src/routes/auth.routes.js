@@ -1,8 +1,9 @@
 
 
 import express from 'express';
-import { adminLogin, createEmployee, deleteMember, EditMember, employeeLogin, getAllEmployees } from '../controller/auth.controller.js';
+import { adminLogin, createEmployee,deleteMember,EditMember, employeeLogin, getAllEmployees } from '../controller/auth.controller.js';
 import { changeTaskStatus, createTask, getAllTasks } from '../controller/addtask.controller.js';
+import { addMember, getAllMembers } from '../controller/addmemberController.js';
 
 const Authrouter = express.Router();
 ///create employee admin
@@ -19,8 +20,11 @@ Authrouter.get("/getAllTasks",getAllTasks )
 Authrouter.put("/changeTaskStatus/:taskId", changeTaskStatus);
 
 ////delete memeber
-Authrouter.delete("/deleteMember/:id", deleteMember)
+
 ///edit member
 Authrouter.put("/editMember/:id", EditMember)
+Authrouter.post("/addMember", addMember);
+Authrouter.get("/getAllMembers", getAllMembers);
+Authrouter.delete("/deleteMember/:id", deleteMember);
 
 export default Authrouter;
